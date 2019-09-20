@@ -45,92 +45,73 @@ function theme_custom_logo(){
 }
 
 function register_post_types(){
-	register_post_type('portfolio', array(
-		'label'  => null,
-		'labels' => array(
-			'name'               => 'Портфоли', // основное название для типа записи
-			'singular_name'      => 'Портфолио', // название для одной записи этого типа
-			'add_new'            => 'Добавить работу', // для добавления новой записи
-			'add_new_item'       => 'Добавление работы', // заголовка у вновь создаваемой записи в админ-панели.
-			'edit_item'          => 'Редактирование работы', // для редактирования типа записи
-			'new_item'           => 'Новая работа', // текст новой записи
-			'view_item'          => 'Смотреть работу', // для просмотра записи этого типа.
-			'search_items'       => 'Искать работу в портфолио', // для поиска по этим типам записи
-			'not_found'          => 'Не найдено', // если в результате поиска ничего не было найдено
-			'not_found_in_trash' => 'Не найдено в корзине', // если не было найдено в корзине
-			'parent_item_colon'  => '', // для родителей (у древовидных типов)
-			'menu_name'          => 'Портфолио', // название меню
-		),
-		'description'         => 'Наше портфолио',
-		'public'              => true,
-		'publicly_queryable'  => true, // зависит от public
-		'exclude_from_search' => true, // зависит от public
-		'show_ui'             => true, // зависит от public
-		'show_in_nav_menus'   => true, // зависит от public
-		'show_in_menu'        => true, // показывать ли в меню адмнки
-		'show_in_admin_bar'   => true, // зависит от show_in_menu
-		'show_in_rest'        => true, // добавить в REST API. C WP 4.7
-		'rest_base'           => null, // $post_type. C WP 4.7
-		'menu_position'       => 4,
-		'menu_icon'           => 'dashicons-format-image', 
-		//'capability_type'   => 'post',
-		//'capabilities'      => 'post', // массив дополнительных прав для этого типа записи
-		//'map_meta_cap'      => null, // Ставим true чтобы включить дефолтный обработчик специальных прав
-		'hierarchical'        => false,
-		'supports'            => [ 'title', 'editor','author', 'thumbnail','excerpt', 'post-formats' ], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
-		'taxonomies'          => ['category','skills'],
-		'has_archive'         => false,
-		'rewrite'             => true,
-		'query_var'           => true,
-		'show_admin_column'     => false, // авто-создание колонки таксы в таблице ассоциированного типа записи. (с версии 3.5)
-		'show_in_rest'          => null, // добавить в REST API
-		'rest_base'             => null // $taxonomy
-	) );
+	$labels = array(
+		'name'               => 'Portfolio', // primary name for record type
+		'singular_name'      => 'Portfolio', // name for one entry of this type
+		'add_new'            => 'Add work', // to add a new entry
+		'add_new_item'       => 'Adding work', // header of the newly created entry in the admin panel
+		'edit_item'          => 'Edit work', // to edit record type
+		'new_item'           => 'New work', // text of new entry
+		'view_item'          => 'Watch work', // to view entries of this type
+		'search_items'       => 'Looking for a job in the portfolio', // to search for these record types
+		'not_found'          => 'Not found', // if nothing was found in the search result
+		'not_found_in_trash' => 'Not found in trash', // if not found in trash
+		'parent_item_colon'  => '', 
+		'menu_name'          => 'Portfolio', // menu name
+	);
+	$args = array(
+		'labels' 	  	=> $labels,
+		'public' 	  	=> true,
+		'show_ui' 	  	=> true, // show interface in admin panel
+		'has_archive' 	=> true,
+		'description' 	=> 'Our portfolio		', 
+		'menu_icon'   	=> 'dashicons-format-image', 
+		'menu_position' => 4, 
+		'supports' 		=> array( 'title', 'editor', 'comments', 'author', 'thumbnail'),
+		'taxonomy' 		=> ['category', 'skills' ],
+		
+	);
+	register_post_type('portfolio', $args);
 	register_post_type('slider', array(
 		'label'  => null,
 		'labels' => array(
-			'name'               => 'Slide', // основное название для типа записи
-			'singular_name'      => 'Slide', // название для одной записи этого типа
-			'add_new'            => 'Add slide', // для добавления новой записи
-			'add_new_item'       => 'Adding a slide', // заголовка у вновь создаваемой записи в админ-панели.
-			'edit_item'          => 'Slide edit', // для редактирования типа записи
-			'new_item'           => 'New slide', // текст новой записи
-			'view_item'          => 'Watch slide', // для просмотра записи этого типа.
-			'search_items'       => 'Search slide', // для поиска по этим типам записи
-			'not_found'          => 'Not found', // если в результате поиска ничего не было найдено
-			'not_found_in_trash' => 'Not found in trash', // если не было найдено в корзине
-			'parent_item_colon'  => '', // для родителей (у древовидных типов)
-			'menu_name'          => 'Slider', // название меню
+			'name'               => 'Slide', // primary name for record type
+			'singular_name'      => 'Slide', // name for one entry of this type
+			'add_new'            => 'Add slide', // to add a new entry
+			'add_new_item'       => 'Adding a slide', // header of the newly created entry in the admin panel
+			'edit_item'          => 'Slide edit', //to edit record type
+			'new_item'           => 'New slide', // text of new entry
+			'view_item'          => 'Watch slide', // to view entries of this type
+			'search_items'       => 'Search slide', // to search for these record types
+			'not_found'          => 'Not found', // if nothing was found in the search result
+			'not_found_in_trash' => 'Not found in trash', // if not found in trash
+			'parent_item_colon'  => '', 
+			'menu_name'          => 'Slider', // menu name
 		),
 		'description'         => 'Home page slider',
 		'public'              => true,
-		'publicly_queryable'  => true, // зависит от public
-		'exclude_from_search' => true, // зависит от public
-		'show_ui'             => true, // зависит от public
-		'show_in_nav_menus'   => true, // зависит от public
-		'show_in_menu'        => true, // показывать ли в меню адмнки
-		'show_in_admin_bar'   => true, // зависит от show_in_menu
-		'show_in_rest'        => true, // добавить в REST API. C WP 4.7
-		'rest_base'           => null, // $post_type. C WP 4.7
+		'publicly_queryable'  => true, // depends on public
+		'exclude_from_search' => true, // depends on public
+		'show_ui'             => true, // depends on public
+		'show_in_nav_menus'   => true, // depends on public
+		'show_in_menu'        => true, // to show in the admn menu 
+		'show_in_admin_bar'   => true, // depends on show_in_menu
+		'show_in_rest'        => true, 
+		'rest_base'           => null, 
 		'menu_position'       => 5,
 		'menu_icon'           => 'dashicons-images-alt', 
-		//'capability_type'   => 'post',
-		//'capabilities'      => 'post', // массив дополнительных прав для этого типа записи
-		//'map_meta_cap'      => null, // Ставим true чтобы включить дефолтный обработчик специальных прав
 		'hierarchical'        => false,
 		'supports'            => [ 'title', 'editor','author', 'thumbnail','excerpt', 'post-formats' ], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
 		'taxonomies'          => [],
 		'has_archive'         => false,
 		'rewrite'             => true,
 		'query_var'           => true,
-		'show_admin_column'     => false, // авто-создание колонки таксы в таблице ассоциированного типа записи. (с версии 3.5)
-		'show_in_rest'          => null, // добавить в REST API
-		'rest_base'             => null // $taxonomy
+		'show_admin_column'   => false, 
+		'show_in_rest'        => null, 
+		'rest_base'           => null 
 	) );
 }
 function create_taxonomy(){
-
-	// список параметров: wp-kama.ru/function/get_taxonomy_labels
 	register_taxonomy( 'skills', [ 'portfolio'], [ 
 		'label'                 => '', // определяется параметром $labels->name
 		'labels'                => [

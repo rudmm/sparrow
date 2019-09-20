@@ -167,7 +167,7 @@ h6 { font-size: 14px; line-height: 30px; }
 
 p { margin: 0 0 30px 0; }
 p img { margin: 0; }
-.post-content p:first-child {
+.post-content.all p:first-child {
    font: 20px/36px raleway-regular, sans-serif;
    margin-bottom: 18px;
    color: #9FA5AD;
@@ -782,6 +782,14 @@ properly.
 }
 .cf:after {
     clear: both;
+}
+.tagcloud::before,
+.tagcloud::after{
+   content: ' ';
+   display: table;
+}
+.tagcloud::after{
+   clear: both;
 }
 
 /*  2. Misc -------------------------------------------------------- */

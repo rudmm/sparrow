@@ -1,9 +1,6 @@
-<?php
-/**
- * Template Name: Portfolio
- */
-?>
 <?php get_header();?>
+
+
 
 <!-- Page Title
 ================================================== -->
@@ -12,7 +9,7 @@
    <div class="row">
 
       <div class="ten columns centered text-center">
-         <h1>Our Amazing Works<span>.</span></h1>
+         <h1><?php single_term_title() ?><span>.</span></h1>
 
          <p>Aenean condimentum, lacus sit amet luctus lobortis, dolores et quas molestias excepturi
             enim tellus ultrices elit, amet consequat enim elit noneas sit amet luctu. </p>
@@ -45,41 +42,41 @@
          </div> <!-- Secondary End-->
 
          <div id="primary" class="eight columns portfolio-list">
+            
             <div id="portfolio-wrapper" class="bgrid-halves cf">
-            <?php
-               $page = (get_query_var('paged')) ? get_query_var('paged') : 1;
-               $args = array('posts_per_page' => 6, 'paged' => $page, 'post_type' => 'portfolio');
-               query_posts($args);
-               $item = 1;
-            ?>
+               
             <?php if (have_posts()) : ?>
-            <?php while (have_posts()) : the_post(); ?>
-
+            
+            <?php while (have_posts()) : the_post(); ?> 
+               
                <div class="columns portfolio-item <?php if($item % 2) echo 'first'; $item++; ?>">
+                  
                   <div class="item-wrap">
-          				<a href="<?php the_permalink(); ?>">
+          				   
+                     <a href="<?php the_permalink(); ?>">
                         <?php the_post_thumbnail(); ?>
                         <div class="overlay"></div>
                         <div class="link-icon"><i class="fa fa-link"></i></div>
                      </a>
-          				<div class="portfolio-item-meta">
+          				
+                      <div class="portfolio-item-meta">
           					<h5><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
                         <p><?php the_category(' '); ?></p>
           				</div>
-                  </div>
-          		</div>
 
-            <?php
-               endwhile;
-               endif;
-            ?>     
+                  </div>
+
+               </div>
+
+            <?php endwhile; ?>
+            <?php endif; ?>
 
             </div>
             <div class="pag-box">
-            <?php the_posts_pagination(array(
-	                           'mid_size' => 7,
-                  )); 
-            ?> 
+               <?php the_posts_pagination(array(
+	                     'mid_size' => 7,
+                     )); 
+               ?> 
             </div>
 
          </div> <!-- primary end-->
@@ -126,6 +123,5 @@
    </div>
 
 </section> <!-- Tweet Section End-->
-
 
 <?php get_footer();?>

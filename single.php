@@ -1,83 +1,83 @@
 <?php get_header(); ?>
+
 <?php the_post(); ?>
 
-   <!-- Page Title
-   ================================================== -->
-   <div id="page-title">
+<!-- Page Title
+================================================== -->
+<div id="page-title">
 
-      <div class="row">
+   <div class="row">
 
-         <div class="ten columns centered text-center">
-            <h1>Single<span>.</span></h1>
+      <div class="ten columns centered text-center">
+         <h1>Single<span>.</span></h1>
 
-            <p>Aenean condimentum, lacus sit amet luctus lobortis, dolores et quas molestias excepturi
+         <p>Aenean condimentum, lacus sit amet luctus lobortis, dolores et quas molestias excepturi
             enim tellus ultrices elit, amet consequat enim elit noneas sit amet luctu. </p>
-         </div>
-
       </div>
 
-   </div> <!-- Page Title End-->
+   </div>
 
-   <!-- Content
-   ================================================== -->
-   <div class="content-outer">
+</div> <!-- Page Title End-->
 
-      <div id="page-content" class="row">
+<!-- Content
+================================================== -->
+<div class="content-outer">
 
-         <div id="primary" class="eight columns">
+   <div id="page-content" class="row">
 
-            <article class="post">
+      <div id="primary" class="eight columns">
 
-               <div class="entry-header cf">
+         <article class="post">
 
-                  <h1><?php the_title(); ?></h1>
+            <div class="entry-header cf">
 
-                  <p class="post-meta">
+               <h1><?php the_title(); ?></h1>
 
-                     <time class="date" datetime="2014-01-14T11:24"><?php the_time('F j, Y') ?></time>
-                     /
-                     <span class="categories">
-                     <?php the_category(' / ', '',''); ?>
-                     </span>
+               <p class="post-meta">
 
-                  </p>
+                  <time class="date" datetime="2014-01-14T11:24"><?php the_time('F j, Y') ?></time>
+                  /
+                  <span class="categories">
+                  <?php the_category(' / ', '',''); ?>
+                  </span>
 
-               </div>
+               </p>
 
-               <div class="post-thumb">
+            </div>
+
+            <div class="post-thumb">
                  
-                  <?php the_post_thumbnail('post_image'); ?>
-               </div>
+               <?php the_post_thumbnail('post_image'); ?>
 
-               <div class="post-content all">
+            </div>
+
+            <div class="post-content all">
                
-               <?php the_content(); ?>
+            <?php the_content(); ?>
 
-                  <p class="tags">
-  				        <?php the_tags('Tagged in : ', ', ') ?>
-  			         </p>
+               <p class="tags">
+  				     <?php the_tags('Tagged in : ', ', ') ?>
+  			      </p>
 
-                  <ul class="post-nav cf">
+               <ul class="post-nav cf">
                   
-  			            <li class="prev"><?php previous_post_link('%link','<strong>PREVIOUS ARTICLE</strong> %title'); ?></li>
-  				         <li class="next"><?php next_post_link('%link','<strong>Next Article</strong> %title'); ?></li>
-  			         </ul>
+  			         <li class="prev"><?php previous_post_link('%link','<strong>PREVIOUS ARTICLE</strong> %title'); ?></li>
+  				      <li class="next"><?php next_post_link('%link','<strong>Next Article</strong> %title'); ?></li>
+  			      
+               </ul>
 
-               </div>
+            </div>
 
-            </article> <!-- post end -->
+         </article> <!-- post end -->
 
-            <!-- Comments
-            ================================================== -->
+         <!-- Comments
+         ================================================== -->
                 
-            <div id="comments">
+         <div id="comments">
             
-
-               <h3>Comments</h3>
-               
-
-               
-               <?php comments_template(); ?>
+            <h3>Comments</h3>
+                  
+            <?php comments_template(); ?>
                <!--<div class="respond">
                   
 
@@ -111,40 +111,38 @@
   				      </form> 
                </div>--> 
 
-            </div> <!-- Comments End -->
-
-         </div>
-
-         <div id="secondary" class="four columns end">
-         <?php get_sidebar();?>
-
-           
-
          </div> <!-- Comments End -->
 
       </div>
 
-   </div> <!-- Content End-->
+      <div id="secondary" class="four columns end">
+      <?php get_sidebar();?>
 
-   <!-- Tweets Section
-   ================================================== -->
-   <section id="tweets">
+      </div> <!-- Comments End -->
 
-      <div class="row">
+   </div>
 
-         <div class="tweeter-icon align-center">
-            <i class="fa fa-twitter"></i>
-         </div>
+</div> <!-- Content End-->
 
-         <ul id="twitter" class="align-center">
-            <li>
-               <span>
+<!-- Tweets Section
+================================================== -->
+<section id="tweets">
+
+   <div class="row">
+
+      <div class="tweeter-icon align-center">
+         <i class="fa fa-twitter"></i>
+      </div>
+
+      <ul id="twitter" class="align-center">
+         <li>
+            <span>
                This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet.
                Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum
                <a href="#">http://t.co/CGIrdxIlI3</a>
-               </span>
-               <b><a href="#">2 Days Ago</a></b>
-            </li>
+            </span>
+            <b><a href="#">2 Days Ago</a></b>
+         </li>
             <!--
             <li>
                <span>
@@ -155,12 +153,12 @@
                <b><a href="#">3 Days Ago</a></b>
             </li>
             -->
-         </ul>
+      </ul>
 
-         <p class="align-center"><a href="#" class="button">Follow us</a></p>
+      <p class="align-center"><a href="#" class="button">Follow us</a></p>
 
-      </div>
+   </div>
 
-   </section> <!-- Tweet Section End-->
+</section> <!-- Tweet Section End-->
 
-  <?php get_footer(); ?>
+<?php get_footer(); ?>

@@ -1,19 +1,19 @@
 <?php
+
 add_filter('comment_form_fields', 'kama_reorder_comment_fields');
-function kama_reorder_comment_fields($fields)
-{
-    // die(print_r( $fields )); // посмотрим какие поля есть
 
-    $new_fields = array(); // сюда соберем поля в новом порядке
+function kama_reorder_comment_fields($fields){
 
-    $myorder = array('author', 'email', 'url', 'comment'); // нужный порядок
+    $new_fields = array(); // here we collect the fields in the new order
+
+    $myorder = array('author', 'email', 'url', 'comment'); // desired order
 
     foreach ($myorder as $key) {
         $new_fields[$key] = $fields[$key];
         unset($fields[$key]);
     }
 
-    // если остались еще какие-то поля добавим их в конец
+    // if there are still some fields add them to the end
     if ($fields) {
         foreach ($fields as $key => $val) {
             $new_fields[$key] = $val;
@@ -22,6 +22,7 @@ function kama_reorder_comment_fields($fields)
 
     return $new_fields;
 }
+
 $defaults = array(
     'fields' => array(
         'author' => '<div class="cf">' . '<label for="author">' . __('Name') . ($req ? ' <span class="required">*</span>' : '') . '</label> ' .
@@ -55,35 +56,35 @@ $defaults = array(
 );
 
 global $post;
-               $id = $post->ID;
-    // Получаем комментарии поста с ID XXX из базы данных 
-    $comments = get_comments(array(
-      'post_id' => $id,
-         'status' => 'approve', // комментарии прошедшие модерацию
-         'walker'            => null,
-         'max_depth'         => '',
-         'style'             => 'ol',
-         'callback'          => null,
-         'end-callback'      => null,
-         'type'              => 'all',
-         'reply_text'        => 'Reply',
-         'page'              => '',
-         'per_page'          => '',
-         'avatar_size'       => 32,
-         'reverse_top_level' => true,
-         'reverse_children'  => '',
-         'format'            => 'html5', // или xhtml, если HTML5 не поддерживается темой
-         'short_ping'        => false,    // С версии 3.6,
-         'echo'              => true, 
-    ));
+$id = $post->ID;
+// Get post comments with ID XXX from the database
+$comments = get_comments(array(
+    'post_id' => $id,
+    'status' => 'approve', // moderated comments
+    'walker'            => null,
+    'max_depth'         => '',
+    'style'             => 'ol',
+    'callback'          => null,
+    'end-callback'      => null,
+    'type'              => 'all',
+    'reply_text'        => 'Reply',
+    'page'              => '',
+    'per_page'          => '',
+    'avatar_size'       => 32,
+    'reverse_top_level' => true,
+    'reverse_children'  => '',
+    'format'            => 'html5', 
+    'short_ping'        => false, 
+    'echo'              => true, 
+));
 
-        // Формируем вывод списка полученных комментариев
-        echo '<ol class="commentlist">';
+// We form the output of the list of received comments
+echo '<ol class="commentlist">';
     wp_list_comments(array(
-      'per_page' => 10, // Пагинация комментариев - по 10 на страницу
-      'reverse_top_level' => false // Показываем последние комментарии в начале
-        ), $comments);
-        echo '</ol>';
+      'per_page' => 10, // Pagination of comments - 10 per page
+      'reverse_top_level' => false // Show last comments at the beginning
+    ), $comments);
+echo '</ol>';
 
 echo '<div class="respond">';
 comment_form($defaults);

@@ -1,104 +1,105 @@
 <?php get_header(); ?>
 
-   <!-- Page Title
-   ================================================== -->
-   <div id="page-title">
+<!-- Page Title
+================================================== -->
+<div id="page-title">
 
-      <div class="row">
+   <div class="row">
 
-         <div class="ten columns centered text-center">
-            <h1>Tag<span>.</span></h1>
+      <div class="ten columns centered text-center">
+         <h1><?php single_tag_title( $prefix = '', $display = true )?><span>.</span></h1>
 
-            <p>Aenean condimentum, lacus sit amet luctus lobortis, dolores et quas molestias excepturi
+         <p>Aenean condimentum, lacus sit amet luctus lobortis, dolores et quas molestias excepturi
             enim tellus ultrices elit, amet consequat enim elit noneas sit amet luctu. </p>
-         </div>
-
       </div>
 
-   </div> <!-- Page Title End-->
+   </div>
 
-   <!-- Content
-   ================================================== -->
-   <div class="content-outer">
+</div> <!-- Page Title End-->
 
-      <div id="page-content" class="row">
+<!-- Content
+================================================== -->
+<div class="content-outer">
 
-         <div id="primary" class="eight columns">
+   <div id="page-content" class="row">
 
-         <?php if ( have_posts() ) : ?>
+      <div id="primary" class="eight columns">
 
-         <?php while ( have_posts() ) : the_post(); ?>
+      <?php if ( have_posts() ) : ?>
 
-               <article class="post">
+      <?php while ( have_posts() ) : the_post(); ?>
 
-               <div class="entry-header cf">
+         <article class="post">
 
-                  <h1><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h1>
+            <div class="entry-header cf">
 
-                  <p class="post-meta">
+               <h1><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h1>
 
-                     <time class="date" datetime="<?php the_time('F jS, Y') ?>"><?php the_time('F j, Y') ?></time>
+               <p class="post-meta">
+
+                  <time class="date" datetime="<?php the_time('F jS, Y') ?>"><?php the_time('F j, Y') ?></time>
                      
-                     <span class="categories">
-                     <?php the_category(' / ', '',''); ?>
-                     </span>
+                  <span class="categories">
+                  <?php the_category(' / ', '',''); ?>
+                  </span>
 
-                  </p>
+               </p>
 
-               </div>
+            </div>
 
-               <div class="post-thumb">
-                  <a href="<?php the_permalink(); ?>" title=""><?php the_post_thumbnail('post_image'); ?></a>
-               </div>
+            <div class="post-thumb">
+               <a href="<?php the_permalink(); ?>" title=""><?php the_post_thumbnail('post_image'); ?></a>
+            </div>
 
-               <div class="post-content">
+            <div class="post-content">
 
-                  <?php the_excerpt(); ?>
+               <?php the_excerpt(); ?>
 
-               </div>
+            </div>
 
-            </article> <!-- post end -->
+         </article> <!-- post end -->
 
-            <?php endwhile; ?> 
+      <?php endwhile; ?> 
 
-         <?php endif; ?>
+      <?php endif; ?>
         
-            <!-- Pagination -->
-            <?php the_posts_pagination(array(
+      <!-- Pagination -->
+      <?php the_posts_pagination(array(
 	            'mid_size' => 7,
-            )); ?> 
+            ));
+      ?> 
 
-         </div> <!-- Primary End-->
+      </div> <!-- Primary End-->
 
-         <div id="secondary" class="four columns end">
+      <div id="secondary" class="four columns end">
 
-            <?php get_sidebar(); ?>
+         <?php get_sidebar(); ?>
 
-         </div> <!-- Secondary End-->
+      </div> <!-- Secondary End-->
 
+   </div>
+
+</div> <!-- Content End-->
+
+<!-- Tweets Section
+================================================== -->
+<section id="tweets">
+
+   <div class="row">
+
+      <div class="tweeter-icon align-center">
+         <i class="fa fa-twitter"></i>
       </div>
 
-   </div> <!-- Content End-->
-
-   <!-- Tweets Section
-   ================================================== -->
-   <section id="tweets">
-
-      <div class="row">
-
-         <div class="tweeter-icon align-center">
-            <i class="fa fa-twitter"></i>
-         </div>
-
-         <ul id="twitter" class="align-center">
-            <li>
-               <span>
+      <ul id="twitter" class="align-center">
+         <li>
+            <span>
                This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet.
                Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum
-               <a href="#">http://t.co/CGIrdxIlI3</a>
-               </span>
-               <b><a href="#">2 Days Ago</a></b>
-            </li>
+            <a href="#">http://t.co/CGIrdxIlI3</a>
+            </span>
+            <b><a href="#">2 Days Ago</a></b>
+         </li>
             <!--
             <li>
                <span>
@@ -109,13 +110,13 @@
                <b><a href="#">3 Days Ago</a></b>
             </li>
             -->
-         </ul>
+      </ul>
 
-         <p class="align-center"><a href="#" class="button">Follow us</a></p>
+      <p class="align-center"><a href="#" class="button">Follow us</a></p>
 
-      </div>
+   </div>
 
-   </section> <!-- Tweets Section End-->
+</section> <!-- Tweets Section End-->
    
    
-   <?php get_footer(); ?>
+<?php get_footer(); ?>
