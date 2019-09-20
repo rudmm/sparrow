@@ -25,17 +25,14 @@
    <!-- Header
    ================================================== -->
    <header>
+     
 
       <div class="row">
 
          <div class="twelve columns">
 
             <div class="logo">
-               <a href="<?php home_url(); ?>">
-               <div>
-                    <?php bloginfo('name'); ?>
-                </div>
-                   <img alt="" src="images/logo.png"></a>
+                   <?php the_custom_logo(); ?>
             </div>
 
             <nav id="nav-wrap">
@@ -55,5 +52,5 @@
          </div>
 
       </div>
-
+      
    </header> <!-- Header End -->

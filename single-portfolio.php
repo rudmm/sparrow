@@ -1,10 +1,5 @@
-<?php
-/**
- * Template Name: Portfolio-post
- * Template Post Type: portfolio
- */
-?>
 <?php get_header(); ?>
+<?php the_post('portfolio'); ?>
 
 <!-- Page Title
    ================================================== -->
@@ -37,14 +32,14 @@
 
                   <div class="entry-description">
 
-                     <?php //get_content(); ?>
+                     <?php the_content(); ?>
 
                   </div>
 
                   <ul class="portfolio-meta-list">
-						   <li><span>Date: </span><?php the_time('F j, Y'); ?></li>
-						   <li><span>Client </span>Styleshout</li>
-						   <li><span>Skills: </span>Photoshop, Photography, Branding</li>
+						   <li><span>Date: </span><?php the_field('date'); ?></li>
+						   <li><span>Client </span><?php the_field('client'); ?></li>
+						   <li><span>Skills: </span><?php the_terms(get_the_ID(), 'skills', '',', ',''); ?></li>
 				      </ul>
 
                   <a class="button" href="http://behance.net">View project</a>

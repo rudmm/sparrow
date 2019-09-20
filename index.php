@@ -8,44 +8,38 @@
 
       <!-- Flexslider Start-->
 	   <div id="intro-slider" class="flexslider">
+      <?php
+$page = (get_query_var('paged')) ? get_query_var('paged') : 1;
+$args = array('paged' => $page, 'post_type' => 'slider');
+query_posts($args);
+?>
+         <?php if (have_posts()): ?>
+
 
 		   <ul class="slides">
+         <?php while (have_posts()): the_post();?>
 
-			   <!-- Slide -->
-			   <li>
-				   <div class="row">
-					   <div class="twelve columns">
-						   <div class="slider-text">
-							   <h1>Free amazing site template<span>.</span></h1>
-							   <p>Aenean condimentum, lacus sit amet luctus lobortis, dolores et quas molestias excepturi
-                        enim tellus ultrices elit, amet consequat enim elit noneas sit amet luctu. lacus sit amet luctus lobortis, dolores et quas molestias excepturi
-                        enim tellus ultrices elit.</p>
+				   <!-- Slide -->
+				   <li>
+					   <div class="row">
+						   <div class="twelve columns">
+							   <div class="slider-text">
+								   <h1><?php the_title();?><span>.</span></h1>
+								   <?php the_content();?>
+							   </div>
+	                     <div class="slider-image">
+	                        <?php the_post_thumbnail();?>
+	                     </div>
 						   </div>
-                     <div class="slider-image">
-                        <img src="images/sliders/home-slider-image-01.png" alt="" />
-                     </div>
 					   </div>
-				   </div>
-			   </li>
+				   </li>
 
-            <!-- Slide -->
-			   <li>
-				   <div class="row">
-					   <div class="twelve columns">
-						   <div class="slider-text">
-							   <h1>Responsive + HTML5 + CSS3<span>.</span></h1>
-							   <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                        deleniti eos et accusamus. amet consequat enim elit noneas sit amet luctu. lacus sit amet luctus lobortis.
-                        Aenean condimentum, lacus sit amet luctus.</p>
-						   </div>
-                     <div class="slider-image">
-                        <img src="images/sliders/home-slider-image-02.png" alt="" />
-                     </div>
-					   </div>
-				   </div>
-			   </li>
 
+	            <?php
+endwhile;
+?>
 		   </ul>
+         <?php endif;?>
 
 	   </div> <!-- Flexslider End-->
 
@@ -108,62 +102,34 @@
          </div>
 
          <div id="portfolio-wrapper" class="bgrid-quarters s-bgrid-halves">
+         <?php
+            $posts = get_posts(array(
+               'numberposts' => 4,
+               'post_type' => 'portfolio',
+               'suppress_filters' => true, // подавление работы фильтров изменения SQL запроса
+            ));
+
+            foreach ($posts as $post) {setup_postdata($post);
+               ?>
 
     		   <div class="columns portfolio-item">
                <div class="item-wrap">
-    				   <a href="portfolio.html">
-                     <img alt="" src="images/portfolio/geometrics.jpg">
+    				   <a href="<?php the_permalink(); ?>">
+                     <?php the_post_thumbnail(); ?>
                      <div class="overlay"></div>
                      <div class="link-icon"><i class="fa fa-link"></i></div>
                   </a>
     					<div class="portfolio-item-meta">
-    					   <h5><a href="portfolio.html">Geometrics</a></h5>
-                     <p>Illustration</p>
+    					   <h5><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
+                    <p> <?php the_category(' ','',''); ?> </p>
     					</div>
                </div>
     			</div>
+             <?php
+                     }
 
-            <div class="columns portfolio-item">
-               <div class="item-wrap">
-    				   <a href="portfolio.html">
-                     <img alt="" src="images/portfolio/console.jpg">
-                     <div class="overlay"></div>
-                     <div class="link-icon"><i class="fa fa-link"></i></div>
-                  </a>
-    					<div class="portfolio-item-meta">
-    					   <h5><a href="portfolio.html">Console</a></h5>
-                     <p>Web Development</p>
-    					</div>
-               </div>
-    			</div>
-
-            <div class="columns portfolio-item s-first">
-               <div class="item-wrap">
-    				   <a href="portfolio.html">
-                     <img alt="" src="images/portfolio/camera-man.jpg">
-                     <div class="overlay"></div>
-                     <div class="link-icon"><i class="fa fa-link"></i></div>
-                  </a>
-    					<div class="portfolio-item-meta">
-    					   <h5><a href="portfolio.html">Camera Man</a></h5>
-                     <p>Photography</p>
-    					</div>
-               </div>
-    			</div>
-
-            <div class="columns portfolio-item">
-               <div class="item-wrap">
-    				   <a href="portfolio.html">
-                     <img alt="" src="images/portfolio/into-the-light.jpg">
-                     <div class="overlay"></div>
-                     <div class="link-icon"><i class="fa fa-link"></i></div>
-                  </a>
-    					<div class="portfolio-item-meta">
-    					   <h5><a href="portfolio.html">Into The Light</a></h5>
-                     <p>Branding</p>
-    					</div>
-               </div>
-    			</div>
+                     wp_reset_postdata();
+                     ?>
 
          </div>
 
@@ -171,69 +137,69 @@
 
    </section> <!-- Works Section End-->
 
-   <!-- Journal Section
-   ================================================== -->
-   <section id="journal">
+               <!-- Journal Section
+               ================================================== -->
+               <section id="journal">
 
-      <div class="row">
-         <div class="twelve columns align-center">
-            <h1>Our latest posts and rants.</h1>
-         </div>
-      </div>
+                  <div class="row">
+                     <div class="twelve columns align-center">
+                        <h1>Our latest posts and rants.</h1>
+                     </div>
+                  </div>
 
-      <div class="blog-entries">
-          <?php
-$posts = get_posts(array(
-    'numberposts' => 3,
-    'post_type' => 'post',
-    'suppress_filters' => true, // подавление работы фильтров изменения SQL запроса
-));
+                  <div class="blog-entries">
+                     <?php
+            $posts = get_posts(array(
+               'numberposts' => 3,
+               'post_type' => 'post',
+               'suppress_filters' => true, // подавление работы фильтров изменения SQL запроса
+            ));
 
-foreach ($posts as $post) {setup_postdata($post);
-    ?>
+            foreach ($posts as $post) {setup_postdata($post);
+               ?>
 
-            <!-- Entry -->
-         <article class="row entry">
+                        <!-- Entry -->
+                     <article class="row entry">
 
-<div class="entry-header">
+            <div class="entry-header">
 
-   <div class="permalink">
-      <a href="<?php the_permalink(); ?>"><i class="fa fa-link"></i></a>
-   </div>
+               <div class="permalink">
+                  <a href="<?php the_permalink();?>"><i class="fa fa-link"></i></a>
+               </div>
 
-   <div class="ten columns entry-title pull-right">
-      <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-   </div>
+               <div class="ten columns entry-title pull-right">
+                  <h3><a href="<?php the_permalink();?>"><?php the_title();?></a></h3>
+               </div>
 
-   <div class="two columns post-meta end">
-      <p>
-      <time datetime="2014-01-31" class="post-date" pubdate=""><?php the_time('F j, Y') ?></time>
-      <span class="dauthor">By <?php the_author(); ?></span>
-      </p>
-   </div>
+               <div class="two columns post-meta end">
+                  <p>
+                  <time datetime="2014-01-31" class="post-date" pubdate=""><?php the_time('F j, Y')?></time>
+                  <span class="dauthor">By <?php the_author();?></span>
+                  </p>
+               </div>
 
-</div>
+            </div>
 
-<div class="ten columns offset-2 post-content">
-   <?php the_excerpt(); ?>
-   
-</div>
+            <div class="ten columns offset-2 post-content">
+               <?php the_excerpt();?>
 
-</article> <!-- Entry End -->
+            </div>
 
-
-            <?php
-}
-
-wp_reset_postdata();
-?>
+            </article> <!-- Entry End -->
 
 
+                     <?php
+                     }
+
+                     wp_reset_postdata();
+                     ?>
 
 
-      </div> <!-- Entries End -->
 
-   </section> <!-- Journal Section End-->
+
+                  </div> <!-- Entries End -->
+
+               </section> <!-- Journal Section End-->
 
    <!-- Call-To-Action Section
    ================================================== -->

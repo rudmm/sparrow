@@ -1,8 +1,3 @@
-<?php
-/**
- * Template Name: Portfolio
- */
-?>
 <?php get_header();?>
 
 
@@ -48,15 +43,8 @@
 
             <div id="primary" class="eight columns portfolio-list">
                <div id="portfolio-wrapper" class="bgrid-halves cf">
-               <?php
-         $page = (get_query_var('paged')) ? get_query_var('paged') : 1;
-         $args = array('posts_per_page' => 6, 'paged' => $page, 'post_type' => 'portfolio');
-         query_posts($args);
-         $item = 1;
-         ?>
-         <?php if (have_posts()) : ?>
-  <?php while (have_posts()) : the_post(); ?>
-
+               <?php if (have_posts()) : ?>
+               <?php while (have_posts()) : the_post(); ?> 
                   <div class="columns portfolio-item <?php if($item % 2) echo 'first'; $item++; ?>">
                      <div class="item-wrap">
           				   <a href="<?php the_permalink(); ?>">
@@ -69,13 +57,9 @@
                            <p><?php the_category(' '); ?></p>
           					</div>
                      </div>
-          			</div>
-
-                   <?php
-                  endwhile;
-               endif;
-                  ?>
-                 
+                      </div>
+                      <?php endwhile; ?>
+                        <?php endif; ?>
 
                </div>
                <div class="pag-box">
